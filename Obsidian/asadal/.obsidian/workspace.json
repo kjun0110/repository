@@ -1,0 +1,237 @@
+{
+  "main": {
+    "id": "4bcea31b36c53983",
+    "type": "split",
+    "children": [
+      {
+        "id": "8827428b352ed107",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "88aa16895dd94922",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "메모.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "메모"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "14bc438112e7b42e",
+    "type": "split",
+    "children": [
+      {
+        "id": "0683147c4891cbbe",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4a311e133ce05ae0",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "파일 탐색기"
+            }
+          },
+          {
+            "id": "02b8ecef3ff09c26",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "검색"
+            }
+          },
+          {
+            "id": "b33c5bae20446418",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "북마크"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 227.5
+  },
+  "right": {
+    "id": "ba64521c25e433c0",
+    "type": "split",
+    "children": [
+      {
+        "id": "205040e84278efad",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c945797beeae6a7b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "월간 업무정리/2026.08.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "백링크"
+            }
+          },
+          {
+            "id": "981537ca5b83909c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "월간 업무정리/2026.08.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "나가는 링크"
+            }
+          },
+          {
+            "id": "4669d4d22e911cf6",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "태그"
+            }
+          },
+          {
+            "id": "b1cfbcbfa94afc6d",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "모든 속성"
+            }
+          },
+          {
+            "id": "e4e82840423431fe",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "월간 업무정리/2026.08.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "개요"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
+    }
+  },
+  "active": "88aa16895dd94922",
+  "lastOpenFiles": [
+    "공부/ontology&KG/S01 오리엔테이션 및 기본개념.md",
+    "공부/OBGA/무제.md",
+    "공부/ontology&KG",
+    "업무 기록/월간 업무 보고/2026.09.md",
+    "KG 0903 - RRF·품질게이트·게시글 본문.md",
+    "업무 기록/업무 일일 기록/지식그래프_26.08~/2026.09/0903_KG - RRF 융합과 품질 게이트, 게시글 본문.md",
+    "KG 범용 계획.md",
+    "지식그래프 진행 상황.md",
+    "공부/OBGA",
+    "내용 정리/지식그래프/KG 수원 - 전체 파이프라인 1차구현.md",
+    "내용 정리/_작성규칙.md",
+    "내용 정리/지식그래프/KG - 지식그래프 구현 시안 내용.md",
+    "내용 정리/지식그래프/KG - 홉 탐색 전략 (Hop Depth Strategy).md",
+    "내용 정리/지식그래프/Ontology - T-BOX.md",
+    "내용 정리/지식그래프/Property Graph - Neo4j + 온톨로지 개념 정리.md",
+    "내용 정리/지식그래프/RDF - 트리플과 추론, Neo4j 이관 시 손실.md",
+    "내용 정리/지식그래프/RDF - neo4j 적용방법.md",
+    "업무 기록/업무 일일 기록/_작성규칙.md",
+    "업무 기록/_작성규칙.md",
+    "내용 정리/지식그래프/KG - 온톨로지 선언 파일 (TBox).md",
+    "내용 정리/지식그래프/KG - 온톨로지 vs 라벨방식 검색 차이 (Hybrid RAG).md",
+    "내용 정리/지식그래프/KG - 원천별 적재 (크롤링 vs pgvector).md",
+    "내용 정리/지식그래프/KG - 온톨로지 데이터 투입 액션.md",
+    "업무 기록/업무 일일 기록/지식그래프_26.08~/2026.09/0902_KG - 서식 게시판 적재와 검색 측정 기반.md",
+    "업무 기록/업무 일일 기록/지식그래프_26.08~/2026.09/0901_KG - 온톨로지 액션 3종과 멈춰 있던 파이프라인.md",
+    "업무 기록/월간 업무 보고/2026.08.md",
+    "업무 기록/업무 일일 기록/지식그래프_26.08~/2026.08/0831_KG - 어휘 경로 신설과 뒤집힌 진단 3건.md",
+    "업무 기록/월간 업무 보고/2026.07.md",
+    "업무 기록/업무 일일 기록/지식그래프_26.08~/2026.09",
+    "업무 기록/월간 업무 보고/2026.08.md.bak",
+    "업무 기록/업무 일일 기록/지식그래프/무제",
+    "업무 기록/업무 일일 기록/지식그래프/2026.08_지식그래프/무제",
+    "업무 기록/업무 일일 기록/지식그래프_26.08~",
+    "업무 기록/업무 일일 상세 기록",
+    "업무기록",
+    "업무 기록",
+    "내용 정리/지식그래프/attachment/Pasted image 20260811115211.png",
+    "내용 정리/지식그래프/attachment/Pasted image 20260811115145.png",
+    "내용 정리/지식그래프/attachment/Pasted image 20260811115143.png",
+    "내용 정리/지식그래프/attachment/Pasted image 20260811115119.png",
+    "내용 정리/지식그래프/attachment/Pasted image 20260811115100.png",
+    "공부/attachment/Pasted image 20260804095207.png"
+  ]
+}
