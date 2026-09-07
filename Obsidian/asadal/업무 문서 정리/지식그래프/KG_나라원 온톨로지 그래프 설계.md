@@ -1,8 +1,14 @@
 ---
-tags: [온톨로지, 그래프DB, neo4j, 크롤링, 나라원]
+tags:
+  - 온톨로지
+  - 그래프DB
+  - neo4j
+  - 크롤링
+  - 나라원
 대상: nara1.kr
 수집일: 2026-09-04
-상태: 설계 (parse 구현 전)
+상태: 설계 기록 (완결). 구현·운영 기록은 별도 문서
+후속: "[[KG_나라원 온톨로지 기반 KG 실습]]"
 ---
 
 # 나라원 온톨로지 그래프
@@ -105,6 +111,9 @@ list.htm?bn=cause04&startTextId=24 → 실제로 다른 12건
 
 ## 4. 온톨로지 — 라벨 15개
 
+> [!note] 이후 16개가 됐다
+> 산문 페이지를 소제목 단위로 자른 `:Chunk` 가 추가됐다. 벡터 검색의 단위다.
+
 ### 결정 규칙
 
 > [!note] 규칙 1 — 노드인가 속성인가 (셋 다 만족하면 노드)
@@ -142,6 +151,7 @@ list.htm?bn=cause04&startTextId=24 → 실제로 다른 12건
 
 **웹 아카이브 (4)**
 `:Resource` `:Notice` `:Photo` `:ExternalSite`
+→ 이후 `:Chunk` 추가로 5개
 
 ### 핵심 관계
 
@@ -203,6 +213,10 @@ RETURN count(DISTINCT p)
 ---
 
 ## 6. 파이프라인 — 5단계, 4개의 파일 경계
+
+> [!note] 이후 7단계가 됐다
+> `embed`(벡터)와 `infer`(규칙 적용)가 들어갔다. `validate` 는 두 단계로 나뉘었다.
+> `fetch → parse → resolve → infer → validate → embed → load → serve`
 
 ```
 fetch → nara1data/ → parse → graph/ → resolve → resolved/ → validate ⛔ → load → Neo4j
@@ -409,7 +423,7 @@ Organization.homepage_url:
 
 | 비는 곳 | 규모 | 왜 |
 |---|---|---|
-| 발주처 전체 이름 | 23개 / 43건 | 15자 절단. 상세페이지 없음(`read.htm`은 빈 템플릿), 접두사 복원 0건 |
+| 발주처 전체 이름 | 23개 / 43건 | **10자** 절단. 상세페이지 없음(`read.htm`은 빈 템플릿), 접두사 복원 0건 |
 | 인증서 이름 | 20건 | 이미지, `alt=""`, 파일명도 `creditrating_imgN.jpg` |
 | 매출 수치 | 차트 2개 | PNG 이미지 |
 | 주요고객 기관명 | 로고 수백 | `alt=""`. 분류 소속만 앎 |
@@ -418,14 +432,18 @@ Organization.homepage_url:
 
 ---
 
-## 13. 미결
+## 13. 미결 — 이후 결과
 
-- [ ] **Neo4j 어디에** — 로컬 Docker / Aura / 기존 인스턴스
-- [ ] **기관유형을 Organization으로 승격?** — 안 하면 "지자체 고객 몇 곳"을 못 셈. 충돌 14곳 대표값을 사람이 정해야 함
-- [ ] **OCR을 v0에 넣나** — 권고: **뺀다**. `:Certificate`는 이미지 참조만 가진 노드로 두고 나중에 층을 얹음
-- [ ] `ontology.yaml`에 라벨 병합(`:Offering`, `:Resource`) + `hierarchy:` 절 반영
-- [ ] `prose` 17페이지를 어떻게 다룰지 — 페이지=노드로 둘지, LLM으로 사실 추출할지
-- [ ] 조직도 세로쓰기 재조립 — **아직 한 번도 안 해봄**
+- [x] **Neo4j 어디에** → 로컬 Docker (5 커뮤니티, http 7481 / bolt 7694)
+- [x] **기관유형을 Organization으로 승격?** → 했다. 다수결 + 동률은 사람이.
+      이후 규칙(`rules.org_type_rollup`)으로 선언에 올려 `infer` 단계가 맡는다
+- [x] **OCR을 v0에 넣나** → 뺐다. 인증서 20건은 이미지를 직접 읽어 `resolutions/` 에 적었다
+- [x] `ontology.yaml`에 라벨 병합 + `hierarchy:` 절 반영
+- [x] `prose` 17페이지 → **페이지=노드가 아니라 소제목 단위로 잘라 `:Chunk` 78개**.
+      고정 길이로 자르면 문장이 끊기고, 통짜로 두면 벡터 하나에 여러 주제가 뭉개진다
+- [ ] 조직도 세로쓰기 재조립 — **여전히 안 해봄.** `:Department` `:Team` 노드 0개
+
+자세한 것은 [[KG_나라원 온톨로지 기반 KG 실습]]
 
 ---
 
