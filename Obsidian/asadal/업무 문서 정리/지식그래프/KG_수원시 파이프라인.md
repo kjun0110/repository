@@ -1,4 +1,4 @@
-> 2026-09-08 기준 **구조 지도**. "어디에 무엇이 있고 어떻게 흐르나"만 담는다.
+> 2026-09-09 기준 **구조 지도**. "어디에 무엇이 있고 어떻게 흐르나"만 담는다.
 > 각 층의 상세(검사 139건 · 사람 결정 251건 · 검색 관문 일곱)는 [[KG_수원 선언 구동 파이프라인]] 에 있다.
 
 ## 한 장 요약
@@ -14,7 +14,7 @@
         └──────────┴──────────┴───┬───┴──────────┴──────────┘
                                   ↓
                                 Neo4j
-                     노드 24,395 · 간선 31,368 · 벡터 10,743
+                     노드 24,708 · 간선 31,417 · 벡터 10,743
 ```
 
 ```
@@ -37,7 +37,7 @@
 > 그래서 이 선언은 **DB 가 아니라 적재기가 강제한다.**
 > 파이프라인을 거치지 않고 Cypher 로 직접 쓰면 규칙이 무시된다.
 
-**선언은 아무 힘이 없고, 읽는 코드가 힘을 준다.** 그래서 "누가 읽는가"를 세는 것이 곧 "이 선언이 살아 있는가"다 — 2026-09-08 에 그렇게 세어 죽은 선언 넷을 찾았다(`classes` 절 · `entity_labels()` · `slots.default` · `validate/02`).
+**선언은 아무 힘이 없고, 읽는 코드가 힘을 준다.** 그래서 "누가 읽는가"를 세는 것이 곧 "이 선언이 살아 있는가"다 — 2026-09-08 에 그렇게 세어 죽은 선언 넷을 찾았고(`classes` 절 · `entity_labels()` · `slots.default` · `validate/02`), 09-09 에 넷을 더 지웠다(`fee_range` · `org_tokens` · `bureau_levels()` · `VISIT_FOR`).
 
 ##### 관계 하나가 다섯 군데에서 일한다
 
@@ -75,9 +75,10 @@ HANDLED_BY:
 ##### 선언은 세 파일로 갈려 있다
 
 ```
-ontology/schema.yaml   라벨 15 · 관계 18 · 어휘 · 요건 · 속성 · 추론 규칙
+ontology/schema.yaml   라벨 14 · 관계 17 · 어휘 · 요건 · 속성 · 추론 규칙
 decisions/*.yaml       사람이 개별 건을 판정한 것. why · by 필수 (6파일)
 sites/*.yaml           수집 대상. 사이트마다 한 장 (suwon · health · jangan)
+                       → 원천 파일 목록도 여기서 나온다 (config.article_sources)
 ```
 
 가르는 기준은 하나다.
@@ -87,6 +88,8 @@ sites/*.yaml           수집 대상. 사이트마다 한 장 (suwon · health �
 사람이 개별 건을 판정한 것이면   decisions/*.yaml
 값을 만들어 내는 방법이면       코드
 ```
+
+09-09 에 코드에서 선언으로 옮긴 것: 어느 라벨을 폐지 판정하나(`labels[].lifecycle`) · `unit_level` 이 어느 어휘를 쓰나(`slots`) · 임베딩 배치·글자 상한(`config`).
 
 ---
 
@@ -113,7 +116,7 @@ monthly   scraping/13       업무편람 39 MB (아직 안 씀)
 사이트마다 다르다   목록 URL · 상세 URL · 본문 selector · 첨부 URL · 응답 속도
 선언 안 한다       칸 순서 ← 표 머리(thead) 이름으로 읽으면 저절로 흡수된다
 같다              산출물 JSON 모양부터 아래로 전부
-                  → nodes/16 을 10줄 고쳐 EXTRA_JSON 으로 흡수했다
+                  → nodes/16 과 validate/02 가 sites/*.yaml 에서 원천 목록을 받는다
 ```
 
 **사이트 하나 = 선언 한 장(20줄).** 구청 사이트는 작성자가 실제 부서명이고 출처가 구를 특정해서, www 게시글에서 못 가르던 동명 부서를 가른다.
@@ -122,7 +125,7 @@ monthly   scraping/13       업무편람 39 MB (아직 안 씀)
 
 ## ② 적재 — `STEPS` 35단계
 
-단계 수는 온톨로지 크기를 따라간다 — **라벨 15 + 관계 18 = 33, 단계 35.** 거의 1:1이다.
+단계 수는 온톨로지 크기를 따라간다 — **라벨 14 + 관계 17 = 31, 단계 35.** 거의 1:1이다.
 
 ```
 ── 멈출 수 있을 때 멈춘다 ───────────────────────────────────
@@ -164,16 +167,18 @@ monthly   scraping/13       업무편람 39 MB (아직 안 씀)
 
 ── 검사와 추론 ─────────────────────────────────────────
 27  validate/01_requirements   요건 · 자기모순 → violations 표시   needs HANDLED_BY
-28  relationships/05_inferred  IN_CHARGE_BUREAU 583 · VISIT_FOR 266
+28  relationships/05_inferred  IN_CHARGE_BUREAU 583 (VISIT_FOR 는 09-09 삭제)
                                inference 선언 → Cypher 생성       needs HANDLED_BY, REQUIRES, PART_OF
-29  validate/06_schema         선언 ↔ 그래프 12종 대조
-30  lifecycle/01_mark_stale    폐지 판정 (Article 은 일부러 제외)   needs OrgUnit, Employee
+29  validate/06_schema         선언 ↔ 그래프 14종 대조
+30  lifecycle/01_mark_stale    폐지 판정 · labels[].lifecycle 셋    needs OrgUnit, Employee
+                               (Article 은 일부러 제외) · :Entity 도 뗀다
 
 ── 임베딩 → 게이트 ─────────────────────────────────────
 31  embedding/01  OrgUnit 190                                    needs OrgUnit
 32  embedding/02  CivilService 644                               needs CivilService
 33  embedding/03  Employee 5,038                                 needs WORKS_AT
 34  embedding/04  Article (검색 대상 4종 · 날짜 창)                needs IN_BOARD
+    (넷 다 schema.check_entity 로 시작 — entity: false 면 API 를 쓰기 전에 멈춘다)
 35  validate/05_gate  gold 48문항 재고 나빠지면 exit 1
 ```
 
@@ -203,9 +208,9 @@ OrgUnit       940  CivilService 644     LISTED_IN  2,509   PART_OF      938
 DocumentType  609  WasteItem    203     REQUIRES     890   HANDLED_BY   700
 Regulation    192  Domain        76     IN_DOMAIN    644   IN_CHARGE_BUREAU 583
 Board          23  TargetGroup   12     BASED_ON     402   AVAILABLE_VIA  376
-Issuer         12  Channel       10     FOR_TARGET   271   VISIT_FOR      266
-                                        DISPOSAL_FEE_IN 203  ISSUED_AT    156
-:Entity 10,743  ← 벡터 검색 입구         PARENT_OF     74   IMPLEMENTS      38
+Issuer         12  Channel       10     FOR_TARGET   271   DISPOSAL_FEE_IN 203
+                                        ISSUED_AT    156   PARENT_OF     74
+:Entity 10,743  ← 벡터 검색 입구         IMPLEMENTS    38   (VISIT_FOR 266 은 09-09 삭제)
 ```
 
 ##### 인덱스 다섯
@@ -219,6 +224,8 @@ attachment_name_index  FULLTEXT  :Attachment(name)             서식 질문의 
 ```
 
 `:Entity` 가 붙는 라벨은 넷(Article · Employee · CivilService · OrgUnit)뿐이다. `Attachment` 8,050 과 `Place` 2,509 를 넣지 않는 이유는 **후보 자리를 먹어서**다 — 첨부는 `HAS_FILE` 로, 장소는 `LISTED_IN` 으로 따라간다.
+
+`validate/06` 이 이 입구를 두 방향으로 지킨다(09-09): `:Entity` 인데 벡터가 없으면 주의, 폐지됐는데 `:Entity` 면 위반. 반대 방향("벡터 있으면 :Entity")은 **일부러 안 본다** — 범위 밖 게시글 510건이 벡터를 남긴 채 입구만 닫혀 있고, 그건 범위를 오갈 때 재임베딩을 피하려는 설계다.
 
 ##### pgvector 는 우리 것이 아니다
 
@@ -255,21 +262,20 @@ DOC_TRUST_MIN 0.74     그래프에 그 절차가 없으면 구조화 필드를 
 
 ---
 
-## 현황 (2026-09-08)
+## 현황 (2026-09-09)
 
 ```
-미해결 목록   40건 중 21 닫힘 · 19 살아 있음
+미해결 목록   41건 중 23 닫힘 · 18 살아 있음
 지표         1위 17/17 · 정밀도 83/227 · 첨부 4/4 · 장소 3/3 · 답변 7/7
-검사         자체검사 · 01 · 02 · 06 · 07 · 08 전부 통과
+검사         자체검사 · 01 · 02 · 06 · 07 · 08 · 게이트 전부 통과
 ```
 
-##### 남은 19건은 전부 무언가를 기다린다
+##### 남은 18건은 전부 무언가를 기다린다
 
 ```
 당신 결정 (3)     22 주간수집 검증 · 26 임계 재측정 · 1 게시판 확대
                   → 재수집 하는 날 하나로 묶인다
-방아쇠 대기 (5)    23-a VISIT_FOR 삭제 · 27 규칙 종류 · 40 대법원 판단
-                  · 35 문항 두 벌 · 39 죽은 선언 자동검출
+방아쇠 대기 (4)    27 규칙 종류 · 40 대법원 판단 · 35 문항 두 벌 · 39 죽은 선언 자동검출
 습관 (2)          24 답변 읽기(7/48) · 25 DOC_TRUST_MIN 여유 0.013
 규모 커지면 (3)    10 청킹 · 16 벡터 중복 · 17 HNSW
 결론 남 (6)       12 · 21 · 23-b · 29 · 30 · 32
@@ -284,7 +290,7 @@ DOC_TRUST_MIN 0.74     그래프에 그 절차가 없으면 구조화 필드를 
 OWL 추론 · 추론 엔진        아니다
 ```
 
-추론은 `chain` 2종뿐이고, 그중 `VISIT_FOR` 는 코드 소비처 0곳에 즉석계산과 266/266 완전 중복이다. `IN_CHARGE_BUREAU` 도 답변에서는 괄호 한 조각이고 12문항 중 2번 나갔다. **있는 2종도 거의 안 쓰인다** — 늘릴지는 제안요청서의 "추론 기반 검색" 이 뭘 뜻하는지 확인한 뒤에 정한다.
+추론은 `chain` 1종(`IN_CHARGE_BUREAU`)뿐이다. 있던 `VISIT_FOR` 는 코드 소비처 0곳에 즉석계산과 266/266 완전 중복이라 09-09 에 지웠다. `IN_CHARGE_BUREAU` 도 답변에서는 괄호 한 조각이고 12문항 중 2번 나갔다. **있는 것도 거의 안 쓰인다** — 늘릴지는 제안요청서의 "추론 기반 검색" 이 뭘 뜻하는지 확인한 뒤에 정한다.
 
 ---
 
