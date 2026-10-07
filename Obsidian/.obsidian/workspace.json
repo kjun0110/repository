@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "asadal/내용 정리/지식그래프/RDF - 스택 구성과 버전 관리, 추론기 선택.md",
+                "file": "asadal/내용 정리/지식그래프/RDF - 추론기 구조.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "RDF - 스택 구성과 버전 관리, 추론기 선택"
+              "title": "RDF - 추론기 구조"
             }
           },
           {
@@ -220,10 +220,14 @@
   },
   "active": "8186e417025b8491",
   "lastOpenFiles": [
+    "asadal/업무 기록/업무 일일 기록/지식그래프_26.08~/2026.10/1007_KG - 나라원 · 설계 모순은 OWL이, 데이터 오류는 SHACL이 잡는다를 실측으로 갈랐다.md",
+    "공부/정보/정보 모음.md",
+    "asadal/내용 정리/지식그래프/RDF - 추론기 구조.md",
+    "asadal/업무 기록/월간 업무 보고/2026.10.md",
+    "asadal/업무 기록/월간 업무 보고/2026.09.md",
+    "asadal/내용 정리/지식그래프/RDF - 스택 구성과 버전 관리, 추론기 선택.md",
     "asadal/업무 기록/업무 일일 기록/지식그래프_26.08~/2026.10/1006_KG - 나라원 · 설계도가 통째여야 증분이 안전하고, 되돌리기는 버전이 아니라 출처 단위여야 한다.md",
     "공부/Ontology & KG/S01 오리엔테이션 및 기본개념.md",
-    "asadal/내용 정리/지식그래프/RDF - 스택 구성과 버전 관리, 추론기 선택.md",
-    "asadal/업무 기록/월간 업무 보고/2026.10.md",
     "asadal/업무 기록/업무 일일 기록/_작성규칙.md",
     "asadal/업무 기록/업무 일일 기록/지식그래프_26.08~/계획 및 방향성.md",
     "asadal/내용 정리/지식그래프/KG - 온톨로지 데이터 투입 액션.md",
@@ -235,7 +239,6 @@
     "공부/Ontology & KG/S03. 전통 구축 방법론 2 - 텍스트 기반 온톨로지 자동 추출.md",
     "공부/Ontology & KG/S02. 전통 구축 방법론 1 - 온톨로지 설계 원칙.md",
     "공부/Ontology & KG/BAML 프레임워크 (Basically A Made-up Language).md",
-    "공부/정보/정보 모음.md",
     "asadal/KG 범용 계획.md",
     "asadal/KG - 적재와 삭제 설계안.md",
     "asadal/KG - 온톨로지 자동화 정도.md",
@@ -243,9 +246,6 @@
     "asadal/업무관련 메모.md",
     "asadal/메모.md",
     "asadal/업무 일정 관리.md",
-    "asadal/업무 문서 정리/지식그래프/KG_수원 선언 구동 파이프라인.md",
-    "asadal/업무 문서 정리/지식그래프/KG_수원시 파이프라인.md",
-    "asadal/업무 문서 정리/지식그래프/KG_나라원 CRUD와 조회 API.md",
     "asadal/업무 기록/업무 일일 기록/지식그래프_26.08~/2026.10",
     "공부/정보",
     "무제",
